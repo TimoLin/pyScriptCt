@@ -11,25 +11,28 @@ import cantera as ct
 #species = {S.name: S for S in ct.Species.listFromFile("NC12H26_Hybrid.cti")}
 #complete_species = [species[S] for S in ("NC12H26", "O2", "N2", "CO2", "H2O")]
 
-#gas = ct.Solution("grimech30.cti")
-gas = ct.Solution("NC12H26_Hybrid.cti")
+#gas = ct.Solution("NC12H26_Hybrid.cti")
+#species = {S.name: S for S in ct.Species.listFromFile("NC12H26_Hybrid.cti")
+#complete_species = [species[S] for S in ("NC12H26", "O2", "N2", "CO2", "H2O")]
 
-species = {S.name: S for S in ct.Species.listFromFile("NC12H26_Hybrid.cti")
-complete_species = [species[S] for S in ("NC12H26", "O2", "N2", "CO2", "H2O")]
+gas = ct.Solution("./grimech30.cti")
+species = {S.name: S for S in ct.Species.listFromFile("./grimech30.cti")}
+complete_species = [species[S] for S in ("CH4", "O2", "N2", "CO2", "H2O")]
 
 gas1 = ct.Solution(thermo="IdealGas", species=complete_species)
 
 #phi = np.linspace(0.1, 2.0, 101)
 #phi = np.array([0.44,0.45,0.46,0.47,0.65,0.75,0.55,0.569])
-phi = np.array([0.44,0.45,0.46,0.47,0.65,0.75,0.55,0.569])
+#phi = np.array([0.44,0.45,0.46,0.47,0.65,0.75,0.55,0.569])
+#phi = np.array([0.44,0.45,0.46,0.47,0.65,0.75,0.55,0.569])
+phi = np.array([0.13168,0.19752,0.26336,0.3950,0.5267])
 T_complete = np.zeros(phi.shape)
 
 Temp = 300
 #Pressure = 13.3*ct.one_atm
 Pressure = 109000
-
-Temp = 295
-Pressure = 102000
+Temp = 300
+Pressure = ct.one_atm
 
 for i in range(len(phi)):
     gas1.TP = Temp, Pressure

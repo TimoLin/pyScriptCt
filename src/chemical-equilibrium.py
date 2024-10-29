@@ -11,14 +11,14 @@ phi = 0.9
 
 # 设定混合气体状态
 ## 温度和压力
-gas.TP = 300.0, ct.one_atm
+gas.TP = 294.0, ct.one_atm
 ## 当量比
 gas.set_equivalence_ratio(phi, 'C2H4', 'O2:1, N2:3.76')
 
 # 计算平衡态
-# HP 表示焓和压力不变
+# XY=HP 表示保持焓和压力不变
 # 采用吉布斯自由能最小化法（收敛慢但精度高）
-gas.equilibrate('HP', solver='gibbs')
+gas.equilibrate(XY='HP', solver='gibbs')
 
 # 输出结果
 thres = 1.0e-6 # 组分浓度的阈值
